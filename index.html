@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Write Notes — Floating Sticky Notes, Drawing &amp; Idea Maps for Chrome</title>
+  <meta name="description" content="Write Notes is a free Chrome extension for floating sticky notes on any webpage. Write rich text, draw on an infinite canvas, and map ideas with connected nodes. Export PDF, text, or zip. Notes stay on your device.">
+  <meta name="keywords" content="chrome extension, sticky notes, floating notes, note taking extension, web notes, draw on webpage, mind map chrome, idea nodes, export notes PDF, offline notes, productivity extension, browser sticky notes, research notes, student notes">
+  <meta name="author" content="Write Notes">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <meta name="theme-color" content="#0a0a0c">
+  <meta name="color-scheme" content="dark">
+  <meta name="application-name" content="Write Notes">
+  <meta name="apple-mobile-web-app-title" content="Write Notes">
+  <meta name="format-detection" content="telephone=no">
+
+  <!-- Canonical: replace with your real domain after hosting -->
+  <link rel="canonical" href="https://instauseraditya.github.io/Write-Notes/">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Open Graph (Facebook, LinkedIn, iMessage previews) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Write Notes">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://instauseraditya.github.io/Write-Notes/">
+  <meta property="og:title" content="Write Notes — Floating Sticky Notes for Chrome">
+  <meta property="og:description" content="Floating sticky notes on any webpage. Write, draw, and map ideas without leaving the tab. Free Chrome extension. Notes stored on your device.">
+  <meta property="og:image" content="https://instauseraditya.github.io/Write-Notes/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Write Notes Chrome extension — floating sticky notes on a webpage">
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Write Notes — Floating Sticky Notes for Chrome">
+  <meta name="twitter:description" content="Write, draw, and map ideas on any webpage. Free Chrome extension with local storage and PDF export.">
+  <meta name="twitter:image" content="https://instauseraditya.github.io/Write-Notes/og-image.png">
+  <meta name="twitter:image:alt" content="Write Notes Chrome extension preview">
+
+  <!-- Optional: add your Twitter handle when you have one -->
+  <!-- <meta name="twitter:site" content="@YourHandle"> -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Structured data: SoftwareApplication (helps Google rich results) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Write Notes",
+    "applicationCategory": "BrowserApplication",
+    "operatingSystem": "Chrome, Chromium, Edge, Brave",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Floating sticky notes on any webpage. Capture text, drawings, and idea nodes. Style them, export as PDF or zip, and keep everything on your device.",
+    "url": "https://instauseraditya.github.io/Write-Notes/",
+    "downloadUrl": "https://chrome.google.com/webstore",
+    "softwareVersion": "1.1.1",
+    "author": {
+      "@type": "Organization",
+      "name": "Write Notes"
+    },
+    "featureList": [
+      "Floating sticky notes on any webpage",
+      "Rich text editor with lists and tables",
+      "Infinite canvas drawing with pen and eraser",
+      "Connected idea nodes / mind maps",
+      "Ten visual skins and multiple fonts",
+      "Export to PDF, text, HTML, PNG, and zip",
+      "Import shared notes from zip or files",
+      "Local-only storage on your device"
+    ],
+    "screenshot": "https://instauseraditya.github.io/Write-Notes/og-image.png"
+  }
+  </script>
+
+  <!-- Structured data: WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Write Notes",
+    "url": "https://instauseraditya.github.io/Write-Notes/",
+    "description": "Official site for the Write Notes Chrome extension — floating notes, drawings, and idea maps.",
+    "inLanguage": "en"
+  }
+  </script>
+
+  <!-- Structured data: FAQPage (matches on-page FAQ) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does Write Notes work on every website?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Notes can float on most normal web pages. Restricted Chrome pages (such as chrome:// settings) cannot host content scripts; use the built-in Notes Board from the popup instead."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where are my notes stored?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Locally in your browser via Chrome storage. They stay on your device unless you export or share a zip."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I export my work from Write Notes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Export text, PDF, HTML, drawings as images, node maps, or a full zip including a backup file."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Write Notes free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. You can use the extension for free. Optional donations support ongoing development."
+        }
+      }
+    ]
+  }
+  </script>
+
+</head>
+<body>
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="o1"></span><span class="o2"></span><span class="o3"></span>
+  </div>
+
+  <nav>
+    <div class="wrap inner">
+      <a class="logo" href="#top">
+        <span class="logo-mark" aria-hidden="true"></span>
+        Write Notes
+      </a>
+      <div class="nav-links">
+        <a href="#features" class="hide-sm">Features</a>
+        <a href="#how" class="hide-sm">How it works</a>
+        <a href="#privacy" class="hide-sm">Privacy</a>
+        <a href="#donate" class="btn btn-donate">Donate</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap" id="top" role="main">
+    <header class="hero">
+      <div class="badge"><i></i> Chrome extension · Free to use</div>
+      <h1>Floating notes on <span>any page</span></h1>
+      <p class="lead">
+        Capture text, sketch ideas, and map thoughts without leaving the tab you’re on.
+        Write Notes lives on top of every site — styled, resizable, and ready to export.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#install">Get Write Notes</a>
+        <a class="btn btn-ghost" href="#features">See features</a>
+        <a class="btn btn-donate" href="#donate">Support the project</a>
+      </div>
+
+      <div class="mock sunny glass" style="border: none; box-shadow: 0 20px 50px rgba(0,0,0,0.4);">
+        <div class="mock-bar">
+          <span class="mock-name">Project ideas</span>
+          <span class="mock-spacer"></span>
+          <span class="mock-dot"></span>
+          <span class="mock-dot"></span>
+        </div>
+        <div class="mock-tabs">
+          <span class="on">Note</span>
+          <span>Draw</span>
+          <span>Nodes</span>
+        </div>
+        <div class="mock-body">
+          <p><strong>Landing page</strong> — glass UI, clear features, donate link.</p>
+          <p>Export as PDF · Import shared zips · Works on every site.</p>
+        </div>
+        <div class="mock-foot"><span>24 words</span><span>Saved</span></div>
+      </div>
+    </header>
+
+    <!-- Features overview -->
+    <section id="features" class="center">
+      <h2>Everything in one floating note</h2>
+      <p class="section-lead">
+        Three modes — rich text, infinite canvas drawing, and connected idea nodes —
+        plus skins, export, and import. Built for focus, not clutter.
+      </p>
+      <div class="grid">
+        <article class="card glass">
+          <div class="card-icon">📝</div>
+          <h3>Rich notes</h3>
+          <p>Bold, italic, lists, tables, colors, images, links, code blocks, and hex color chips. Word count included.</p>
+        </article>
+        <article class="card glass">
+          <div class="card-icon">✏️</div>
+          <h3>Draw canvas</h3>
+          <p>Pen, eraser, lines, arrows, shapes, and text. Zoom, pan, and export drawings as PNG or include them in a zip.</p>
+        </article>
+        <article class="card glass">
+          <div class="card-icon">🔗</div>
+          <h3>Idea nodes</h3>
+          <p>Mind-map style nodes with parent links, colors, and outline export. Double-click to branch ideas fast.</p>
+        </article>
+        <article class="card glass">
+          <div class="card-icon">🎨</div>
+          <h3>Skins &amp; fonts</h3>
+          <p>Sunny, Rose, Mint, Sky, Lilac, Glass, Midnight, Grid, Lined, Sunset — plus system and handwriting fonts.</p>
+        </article>
+        <article class="card glass">
+          <div class="card-icon">📦</div>
+          <h3>Export &amp; import</h3>
+          <p>Save as text, PDF, HTML, or a full zip with note, drawing, and nodes. Import shared files anytime.</p>
+        </article>
+        <article class="card glass">
+          <div class="card-icon">🌐</div>
+          <h3>Anywhere you browse</h3>
+          <p>Notes float on any webpage. Drag, resize, and reopen from the toolbar or the dedicated notes board.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Detailed features -->
+    <section>
+      <div class="feature-row">
+        <div class="feature-copy">
+          <h3>Note mode — write without friction</h3>
+          <p>A full mini editor in a sticky note. Format as you think; tables and lists stay editable.</p>
+          <ul>
+            <li>Bold, italic, underline, strikethrough, super/subscript</li>
+            <li>Bullet and numbered lists with style controls</li>
+            <li>Insert tables; add or remove rows and columns; resize cells</li>
+            <li>Text color, images, and automatic link previews</li>
+            <li>Code blocks and hex color swatches when you paste them</li>
+          </ul>
+        </div>
+        <div class="feature-visual glass">
+          <div class="mock glass-note" style="width:100%; max-width:300px; margin:0; animation:none;">
+            <div class="mock-bar"><span class="mock-name">Meeting notes</span></div>
+            <div class="mock-body" style="min-height:100px;">
+              <p>• Ship landing page</p>
+              <p>• Add donate link in popup</p>
+              <p>• Polish table resize UI</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-row">
+        <div class="feature-copy">
+          <h3>Draw mode — sketch on an infinite canvas</h3>
+          <p>Capture diagrams and freehand thoughts next to your research tab.</p>
+          <ul>
+            <li>Pen and eraser with adjustable thickness</li>
+            <li>Line, arrow, rectangle, and ellipse tools</li>
+            <li>On-canvas text and image paste</li>
+            <li>Select, move, and scale objects</li>
+            <li>Zoom and pan; export as image</li>
+          </ul>
+        </div>
+        <div class="feature-visual glass">
+          <svg width="220" height="140" viewBox="0 0 220 140" fill="none" aria-hidden="true">
+            <rect x="20" y="30" width="70" height="40" rx="8" stroke="#0a84ff" stroke-width="2" fill="rgba(10,132,255,0.15)"/>
+            <path d="M90 50 H130" stroke="#ff7e9d" stroke-width="2" stroke-linecap="round"/>
+            <path d="M125 45 L135 50 L125 55" stroke="#ff7e9d" stroke-width="2" fill="none"/>
+            <ellipse cx="165" cy="55" rx="28" ry="22" stroke="#6bcb77" stroke-width="2" fill="rgba(107,203,119,0.12)"/>
+            <path d="M40 100 Q80 70 120 100 T200 90" stroke="#c77dff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="feature-row">
+        <div class="feature-copy">
+          <h3>Nodes mode — map connected ideas</h3>
+          <p>Build lightweight mind maps without opening another app.</p>
+          <ul>
+            <li>Double-click the canvas to add a node</li>
+            <li>Tab to create a child from the selected idea</li>
+            <li>Drag to rearrange; links update automatically</li>
+            <li>Per-node colors or cascade styles to children</li>
+            <li>Export outline text, PNG, SVG, or JSON</li>
+          </ul>
+        </div>
+        <div class="feature-visual glass">
+          <svg width="240" height="150" viewBox="0 0 240 150" fill="none" aria-hidden="true">
+            <path d="M70 40 C110 40 110 75 150 75" stroke="rgba(255,255,255,0.35)" stroke-width="2" fill="none"/>
+            <path d="M70 40 C110 40 110 115 150 115" stroke="rgba(255,255,255,0.35)" stroke-width="2" fill="none"/>
+            <rect x="16" y="24" width="70" height="32" rx="16" fill="rgba(255,255,255,0.9)"/>
+            <text x="51" y="44" text-anchor="middle" fill="#1d1d1f" font-size="11" font-family="Inter,sans-serif" font-weight="600">Idea</text>
+            <rect x="148" y="60" width="76" height="32" rx="16" fill="rgba(207,230,255,0.95)"/>
+            <text x="186" y="80" text-anchor="middle" fill="#1d1d1f" font-size="11" font-family="Inter,sans-serif" font-weight="600">Branch A</text>
+            <rect x="148" y="100" width="76" height="32" rx="16" fill="rgba(205,245,223,0.95)"/>
+            <text x="186" y="120" text-anchor="middle" fill="#1d1d1f" font-size="11" font-family="Inter,sans-serif" font-weight="600">Branch B</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skins -->
+    <section class="center">
+      <h2>Ten skins, one vibe</h2>
+      <p class="section-lead">Pick a look that matches the page you’re on — from paper grid to glass and midnight.</p>
+      <div class="skins" aria-label="Note skin previews">
+        <div class="skin sunny" title="Sunny"></div>
+        <div class="skin rose" title="Rose"></div>
+        <div class="skin mint" title="Mint"></div>
+        <div class="skin sky" title="Sky"></div>
+        <div class="skin lilac" title="Lilac"></div>
+        <div class="skin midnight" title="Midnight"></div>
+        <div class="skin glass-s" title="Glass"></div>
+        <div class="skin grid-s" title="Grid paper"></div>
+        <div class="skin lined-s" title="Lined paper"></div>
+        <div class="skin sunset-s" title="Sunset"></div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="how" class="center">
+      <h2>How it works</h2>
+      <p class="section-lead">Install once. Open notes wherever you are.</p>
+      <div class="steps">
+        <div class="step glass">
+          <h3>Install from Chrome</h3>
+          <p>Add Write Notes from the Chrome Web Store. It works on normal web pages.</p>
+        </div>
+        <div class="step glass">
+          <h3>Open a note</h3>
+          <p>Click the extension icon to create or reopen notes. Or use the notes board from the popup.</p>
+        </div>
+        <div class="step glass">
+          <h3>Write, draw, map</h3>
+          <p>Switch tabs inside the note. Drag it anywhere, resize, change skin, and export when done.</p>
+        </div>
+        <div class="step glass">
+          <h3>Stay in flow</h3>
+          <p>Notes stay with you across sites. Import a zip someone shared and keep collaborating offline.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Install CTA -->
+    <section id="install" class="center">
+      <div class="glass donate-block" style="background: var(--glass);">
+        <h2>Ready to try Write Notes?</h2>
+        <p>Free on the Chrome Web Store. Floating notes, drawings, and idea nodes — without switching apps.</p>
+        <div class="donate-actions">
+          <a class="btn btn-primary" href="https://chrome.google.com/webstore" rel="noopener noreferrer">
+            View on Chrome Web Store
+          </a>
+          <a class="btn btn-ghost" href="#donate">Support development</a>
+        </div>
+        <p style="margin-top:16px;font-size:13px;color:var(--muted);">
+          Replace the store link with your listing URL after publishing.
+        </p>
+      </div>
+    </section>
+
+    <!-- Donate -->
+    <section id="donate" class="center">
+      <div class="glass donate-block">
+        <h2>Support Write Notes</h2>
+        <p>
+          Write Notes is built independently. If it helps you stay organized,
+          a small donation keeps improvements coming — new skins, export options, and polish.
+        </p>
+        <div class="donate-actions">
+          <!-- TODO: replace href with your real donate URL (PayPal.me, BuyMeACoffee, Razorpay link, etc.) -->
+          <a class="btn btn-donate" id="donate-link" href="https://razorpay.me/@incogfeed" target="_blank" rel="noopener noreferrer">
+            Donate
+          </a>
+          <a class="btn btn-ghost" href="mailto:incogfeed@gmail.com">Say thanks by email</a>
+        </div>
+        <p style="margin-top:14px;font-size:13px;color:var(--muted);">
+          Donations are not mandatory but appreciated.
+        </p>
+      </div>
+    </section>
+
+    <!-- Privacy & policies (needed for CWS website field / trust) -->
+    <section id="privacy" class="center">
+      <h2>Privacy &amp; policies</h2>
+      <p class="section-lead">
+        Clear policies help users trust the extension and meet Chrome Web Store expectations.
+      </p>
+      <div class="policies">
+        <article class="card glass" id="privacy-policy">
+          <h3>Privacy policy</h3>
+          <p>
+            Write Notes stores your notes locally in your browser using Chrome storage.
+            Notes are not uploaded to our servers. We do not sell personal data.
+            If you use optional cloud or payment links in the future, that will be disclosed here.
+          </p>
+        </article>
+        <article class="card glass" id="terms">
+          <h3>Terms of use</h3>
+          <p>
+            The extension is provided as-is for personal and professional note-taking.
+            You are responsible for the content you create. Do not use the extension for unlawful purposes.
+          </p>
+        </article>
+        <article class="card glass" id="refund">
+          <h3>Refunds &amp; donations</h3>
+          <p>
+            The extension is free. Donations are voluntary and non-refundable unless required by law
+            or by the payment provider’s rules. Contact us if a payment was made in error.
+          </p>
+        </article>
+        <article class="card glass">
+          <h3>Contact</h3>
+          <p>
+            Questions or feedback:
+            <a href="mailto:incogfeed@gmail.com" style="color:var(--accent);">incogfeed@gmail.com</a>
+            — replace with your real email before publishing.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="center">
+      <h2>FAQ</h2>
+      <div class="faq">
+        <details class="glass">
+          <summary>Does it work on every website?</summary>
+          <div class="ans">
+            Notes can float on most normal web pages. Restricted Chrome pages (like chrome:// settings)
+            cannot host content scripts; use the built-in notes board instead.
+          </div>
+        </details>
+        <details class="glass">
+          <summary>Where are my notes stored?</summary>
+          <div class="ans">
+            Locally in your browser via Chrome’s storage API. They stay on your device unless you export or share a zip.
+          </div>
+        </details>
+        <details class="glass">
+          <summary>Can I export my work?</summary>
+          <div class="ans">
+            Yes. Export text, PDF, HTML, drawings as images, node maps, or a full zip including a sticky-note JSON backup.
+          </div>
+        </details>
+        <details class="glass">
+          <summary>Is Write Notes free?</summary>
+          <div class="ans">
+            Yes. You can use the extension for free. Optional donations support ongoing development.
+          </div>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="wrap">
+      <div class="logo" style="justify-content:center;">
+        <span class="logo-mark"></span>
+        Write Notes
+      </div>
+      <p>Floating notes, drawings, and idea nodes for Chrome.</p>
+      <p>
+        <a href="#privacy-policy">Privacy</a> ·
+        <a href="#terms">Terms</a> ·
+        <a href="#donate">Donate</a>
+      </p>
+      <p style="margin-top:16px;">© <span id="y"></span> Write Notes</p>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Payment successful — Write Notes Pro</title>
+<style>
+  body { font-family: Inter, system-ui, sans-serif; background: #0a0a0c; color: #f4f4f7;
+    min-height: 100vh; display: grid; place-items: center; margin: 0; padding: 24px; }
+  .card { max-width: 420px; padding: 28px; border-radius: 20px;
+    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); }
+  h1 { font-size: 1.4rem; margin: 0 0 10px; }
+  p { color: #9a9aa8; line-height: 1.5; }
+  code { display: block; margin: 12px 0; padding: 10px; border-radius: 10px;
+    background: #1e1f26; word-break: break-all; font-size: 13px; }
+  ol { color: #c8c8d0; padding-left: 1.2em; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>You’re Pro 🎉</h1>
+    <p>Thanks for supporting Write Notes. If Dodo showed a license key, copy it below (also check your email).</p>
+    <code id="key">Checking URL…</code>
+    <p><strong>Next steps</strong></p>
+    <ol>
+      <li>Open the Write Notes extension popup</li>
+      <li>Paste a license key and click <em>Activate Pro</em></li>
+      <li>Each purchase includes 3 keys — one device per key</li>
+    </ol>
+    <p style="font-size:13px">You can deactivate a device later from the popup to move a key.</p>
+  </div>
+  <script>
+    const q = new URLSearchParams(location.search);
+    const key = q.get('license_key') || q.get('licenseKey') || '';
+    document.getElementById('key').textContent = key || 'Check your email for 3 license keys (WN-…).';
+  </script>
+</body>
+</html>
